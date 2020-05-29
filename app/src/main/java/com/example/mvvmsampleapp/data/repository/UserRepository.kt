@@ -9,7 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository {
-    fun userLogin(email: String,password: String) {
+    fun userLogin(email: String,password: String):LiveData<String> {
         val loginResponse = MutableLiveData<String>()
 
         MyApi().userLogin(email,password)
@@ -31,5 +31,6 @@ class UserRepository {
                 }
 
             } )
+        return loginResponse
     }
 }
