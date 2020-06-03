@@ -6,13 +6,16 @@ import com.example.mvvmsampleapp.data.repository.UserRepository
 import com.example.mvvmsampleapp.util.ApiException
 import com.example.mvvmsampleapp.util.Coroutines
 
-class AuthViewModel: ViewModel() {
+class AuthViewModel(
+    private val repository: UserRepository
+): ViewModel() {
 
     var email: String? = null
     var password: String? = null
 
     var authListener:AuthListener? = null
 
+    fun getLoggedInUser() = repository.getUser()
     fun onLoginButtonClicked(view: View){
         authListener!!.onStarted()
         if(email.isNullOrEmpty() || password.isNullOrEmpty()){
@@ -22,9 +25,10 @@ class AuthViewModel: ViewModel() {
         }
         Coroutines.main {
             try {
-                val response = UserRepository().userLogin(email!!,password!!)
+                val response = repository.userLogin(email!!,password!!)
                 response.user?.let {
                     authListener?.onSuccess(it)
+                    repository.saveUser(it)
                     return@main
                 }
                 authListener?.onFailure(response.message!!)
