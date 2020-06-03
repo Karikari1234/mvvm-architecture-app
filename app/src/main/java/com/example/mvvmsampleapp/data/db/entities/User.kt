@@ -16,5 +16,5 @@ data class User(
     var updated_at:String? = null
 ){
     @PrimaryKey(autoGenerate = false)
-    val uid: Int = CURRENT_USER
+    var uid: Int = CURRENT_USER
 }
