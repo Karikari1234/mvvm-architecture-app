@@ -16,11 +16,11 @@ import com.example.mvvmsampleapp.util.snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
-import org.kodein.di.generic.instance as instance
+import org.kodein.di.generic.instance
 
 class LoginActivity : AppCompatActivity(),AuthListener,KodeinAware {
     override val kodein by kodein()
-    private val factory: AuthViewModelFactory by this.instance()
+    private val factory: AuthViewModelFactory by instance<AuthViewModelFactory>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
