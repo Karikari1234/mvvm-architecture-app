@@ -14,6 +14,8 @@ import com.example.mvvmsampleapp.util.hide
 import com.example.mvvmsampleapp.util.show
 import com.example.mvvmsampleapp.util.snackbar
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.progress_bar
+import kotlinx.android.synthetic.main.activity_signup.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
@@ -51,6 +53,6 @@ class SignupActivity : AppCompatActivity(),AuthListener,KodeinAware {
 
     override fun onFailure(message: String) {
         progress_bar.hide()
-        root_layout.snackbar(message)
+        signup_layout.snackbar(message)
     }
 }
