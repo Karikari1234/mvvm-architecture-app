@@ -4,17 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.mvvmsampleapp.data.db.entities.Quote
 import com.example.mvvmsampleapp.data.db.entities.User
 import java.security.AccessControlContext
 
 
 @Database(
-    entities = [User::class],
+    entities = [User::class,Quote::class],
     version = 1,
     exportSchema = false
 )
 abstract  class AppDatabase:RoomDatabase() {
     abstract fun getUserDao() : UserDao
+    abstract fun getQuoteDao(): QuoteDao
     companion object {
 
         @Volatile
